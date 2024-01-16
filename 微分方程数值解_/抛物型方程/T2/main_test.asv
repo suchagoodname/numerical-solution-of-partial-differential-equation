@@ -1,0 +1,23 @@
+%% 一维热传导方程有限差分方法主测试脚本 main_test.m
+%   依次测试：
+%       向前差分
+%       向后差分
+%       六点对称格式
+%   并可视化数值计算结果。
+
+pde = model_data(); %模型数据结构体
+
+% 向前差分格式
+[X,T,U1,h] = heat_equation_fd1d(10,10,pde,'forward');
+showsolution(X,T,U1,h); % 以二元函数方式显示数值解
+
+% 向后差分格式
+[X,T,U2,h] = heat_equation_fd1d(10,10,pde,'backward');
+showsolution(X,T,U2,h); % 以二元函数方式显示数值解
+
+% 六点对称格式，即 Crank-Nicholson 格式
+[X,T,U3] = heat_equation_fd1d(10,10,pde,'crank-nicholson');
+showsolution(X,T,U3); % 以二元函数方式显示数值解
+
+
+
